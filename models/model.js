@@ -2,7 +2,7 @@ import Sequelize, { DataTypes, Model } from 'sequelize'
 
 const sequelize = new Sequelize('postgresql:///recipe_app', { define: { underscored: true }})
 
-class Ingredient extends Model {}
+export class Ingredient extends Model {}
 Ingredient.init(
     {
         id: {
@@ -26,7 +26,7 @@ Ingredient.init(
     }
 )
 
-class Author extends Model {}
+export class Author extends Model {}
 Author.init(
     {
         id: {
@@ -50,7 +50,7 @@ Author.init(
     }
 )
 
-class Recipe extends Model {}
+export class Recipe extends Model {}
 Recipe.init(
     {
         id: {
@@ -77,7 +77,7 @@ Recipe.init(
     }
 )
 
-class RecipeIngredient extends Model {}
+export class RecipeIngredient extends Model {}
 RecipeIngredient.init(
     {
         id: {
@@ -106,5 +106,7 @@ RecipeIngredient.belongsTo(Ingredient, { foreignKey: 'ingredientId' });
 Author.hasMany(Recipe, { foreignKey: 'authorId' });
 Recipe.belongsTo(Author, { foreignKey: 'authorId' });
 
-await sequelize.sync({ force: true })
-await sequelize.close()
+//these things were more for testing and seeding... now that this file is part of an app...
+//we dont' want these things to happen
+// await sequelize.sync()
+// await sequelize.close()
